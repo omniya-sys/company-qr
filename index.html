@@ -207,6 +207,16 @@
     </a>
 
   </div>
-
+<script>
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const link = this.getAttribute('href');
+      if (link && link !== '#') {
+        window.open(link, '_blank');
+      }
+    });
+  });
+</script>
 </body>
 </html>
+
