@@ -16,44 +16,43 @@
       --font-sans: "Poppins", sans-serif;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-sans); }
-    body { background-color: var(--bg); color: var(--btn); overflow-x: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    * { margin:0; padding:0; box-sizing:border-box; font-family: var(--font-sans); }
+    body { background-color: var(--bg); color: var(--btn); overflow-x:hidden; display:flex; justify-content:center; align-items:flex-start; min-height:100vh; padding-top:50px; }
 
     /* Splash Screen */
     .splash {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: var(--bg); display: flex; justify-content: center; align-items: center;
-      z-index: 1000;
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      background: var(--bg); display:flex; justify-content:center; align-items:center;
+      z-index:1000;
     }
-    .splash img { width: 200px; height: auto; }
+    .splash img { width:200px; height:auto; }
 
     /* Main Container */
-    .container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 20px; gap: 15px; }
+    .container { display:flex; flex-direction:column; align-items:center; text-align:center; padding:20px; gap:15px; }
 
     /* Banner */
-    .banner { width: 100%; max-width: 600px; height: 220px; background: #222; background-size: cover; background-position: center; border-radius: 12px; position: relative; }
+    .banner-container { position:relative; width:100%; max-width:600px; }
+    .banner { width:100%; height:220px; background:#222; background-size:cover; background-position:center; border-radius:12px; }
 
     /* CEO photo */
-    .profile { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 4px solid var(--btn); position: absolute; top: -65px; left: 20px; }
+    .profile { width:130px; height:130px; border-radius:50%; object-fit:cover; border:4px solid var(--btn); position:absolute; top:-65px; left:calc(50% - 65px); }
 
-    h1 { font-size: 1.9rem; font-weight: 700; color: var(--btn); margin-bottom: 5px; }
-    p.description { font-size: 1rem; color: #ccc; font-weight: 400; max-width: 320px; margin-bottom: 15px; }
+    h1 { font-size:1.9rem; font-weight:700; color:var(--btn); margin-top:80px; }
+    p.description { font-size:1rem; color:#ccc; font-weight:400; max-width:320px; margin:12px 0 20px; }
 
     /* Buttons */
-    .btn {
-      display: flex; align-items: center; justify-content: flex-start;
-      width: 250px; background: var(--btn); color: var(--text); text-decoration: none;
-      padding: 12px 20px; border-radius: 40px; font-weight: 600; transition: all 0.3s ease;
-      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
-    }
-    .btn:hover { transform: scale(1.04); opacity: 0.9; }
-    .btn img { width: 22px; height: 22px; margin-right: 12px; }
+    .btn { display:flex; align-items:center; justify-content:center; width:250px; background:var(--btn); color:var(--text); text-decoration:none; padding:12px 20px; border-radius:40px; font-weight:600; transition:all 0.3s ease; box-shadow:0 2px 6px rgba(255,255,255,0.1); }
+    .btn:hover { transform:scale(1.04); opacity:0.9; }
+    .btn img { width:22px; height:22px; margin-right:12px; }
 
-    @media (max-width: 600px) {
-      .btn { width: 200px; font-size: 0.9rem; }
-      .btn img { width: 20px; height: 20px; }
-      .profile { width: 100px; height: 100px; top: -50px; }
-      .banner { height: 160px; }
+    /* Responsive */
+    @media (max-width:600px) {
+      .banner { height:160px; }
+      .profile { width:100px; height:100px; top:-50px; left:calc(50% - 50px); }
+      h1 { font-size:1.5rem; margin-top:60px; }
+      p.description { font-size:0.9rem; max-width:260px; }
+      .btn { width:200px; font-size:0.9rem; }
+      .btn img { width:20px; height:20px; }
     }
   </style>
 </head>
@@ -66,7 +65,8 @@
 
   <!-- Main Content -->
   <div class="container">
-    <div class="banner" style="background-image: url('banner');">
+    <div class="banner-container">
+      <div class="banner" style="background-image:url('banner');"></div>
       <img src="ceo" alt="CEO Photo" class="profile">
     </div>
 
@@ -77,41 +77,35 @@
     <a class="btn" id="whatsapp-btn">
       <img src="whatsapp.png" alt=""> WhatsApp
     </a>
-
     <a class="btn" href="mailto:waleed@goldendeveloper.net" target="_blank">
       <img src="email.png" alt=""> Email
     </a>
-
     <a class="btn" href="https://goldendeveloper.net/media/Consulente_Software_&_AI.pdf" target="_blank">
       <img src="pdf.png" alt=""> PDF
     </a>
-
     <a class="btn" href="https://goldendeveloper.net/Waleed.Elerksosy_CV.IT.pdf" target="_blank">
       <img src="pin.png" alt=""> Attachment
     </a>
-
     <a class="btn" href="https://goldendeveloper.net/" target="_blank">
       <img src="website.png" alt=""> Website
     </a>
   </div>
 
-  <!-- Scripts -->
   <script>
-    // Hide splash after 2s
-    setTimeout(() => { document.querySelector('.splash').style.display = 'none'; }, 2000);
+    // Hide splash after 4 seconds
+    setTimeout(() => { document.querySelector('.splash').style.display='none'; }, 4000);
 
     // WhatsApp smart link
     const whatsappBtn = document.getElementById("whatsapp-btn");
-    const phone = "393896192147";
-    const message = "Hello Waleed, I'm interested in your solutions.";
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const link = isMobile
-      ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`
-      : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-    whatsappBtn.href = link;
-    whatsappBtn.target = "_blank";
+    const phone="393896192147";
+    const message="Hello Waleed, I'm interested in your solutions.";
+    const isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const link=isMobile?`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`:`https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+    whatsappBtn.href=link;
+    whatsappBtn.target="_blank";
   </script>
 </body>
 </html>
+
 
 
